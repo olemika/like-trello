@@ -1,0 +1,61 @@
+.box {
+  padding: 20px;
+  border-radius: 8px;
+  background: #fff;
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  font-size: 16px;
+  font-weight: normal;
+  position: relative;
+}
+
+.tags {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.tag {
+  font-size: 15px;
+  padding: 6px 12px;
+  border-radius: 26px;
+  background: rgb(159, 241, 159);
+  color: rgb(62, 100, 62);
+}
+
+.tag + .tag {
+  margin-left: 8px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: #949494;
+}
+
+.icon:hover {
+  fill: #535353;
+}
+
+.toolbar {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgb(240, 208, 208);
+}
+
+.remove-card {
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  cursor: pointer;
+}

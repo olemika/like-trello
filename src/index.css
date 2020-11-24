@@ -1,0 +1,16 @@
+body {
+  font-family: system-ui;
+  background: rgb(221, 133, 252);
+  background: linear-gradient(
+    29deg,
+    rgba(221, 133, 252, 1) 0%,
+    rgba(255, 245, 98, 1) 100%
+  );
+  color: white;
+  padding: 16px 32px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

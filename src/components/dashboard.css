@@ -1,0 +1,17 @@
+.category {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: max-content;
+  grid-gap: 13px;
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.grid {
+  padding: 20px;
+  display: grid;
+  width: 100%;
+  grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+  grid-gap: 30px;
+}
