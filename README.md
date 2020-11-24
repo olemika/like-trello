@@ -6,6 +6,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [x] Add new tag to card
 [x] Remove card
-[] Tags countor
+[] Tags counter
 [] Random color for tag and progress bar
 [] Drag and drop card
