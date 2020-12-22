@@ -1,6 +1,6 @@
 body {
   font-family: Arial;
-  background: rgb(221, 133, 252);
+  /* background: rgb(221, 133, 252); */
   background: linear-gradient(
     29deg,
     rgba(221, 133, 252, 1) 0%,
