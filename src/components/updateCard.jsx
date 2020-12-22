@@ -49,7 +49,6 @@ export default function UpdateCard({
 
   return (
     <>
-    <form onSubmit={addNewTask}>
       <h2 className='create-card-header'>Редактировать</h2>
       <label>
         Название:
@@ -57,7 +56,6 @@ export default function UpdateCard({
           type='text'
           defaultValue={info.task_name}
           onChange={(e) => setNewCard({ ...newCard, name: e.target.value })}
-          required
         />
       </label>
       <label htmlFor=''>
@@ -68,7 +66,6 @@ export default function UpdateCard({
           onChange={(e) =>
             setNewCard({ ...newCard, description: e.target.value })
           }
-          required
         />
       </label>
 
@@ -91,7 +88,6 @@ export default function UpdateCard({
                 .join("-"),
             })
           }
-          required
         />
       </label>
 
@@ -114,7 +110,6 @@ export default function UpdateCard({
               defaultValue={newCard.tag}
               type='text'
               autoFocus
-              required
             />
           </label>
         </form>
@@ -140,10 +135,9 @@ export default function UpdateCard({
           </select>
         </label>
       </div>
-      <button className='add-task-button btn' type='submit'>
+      <button className='add-task-button btn' onClick={addNewTask}>
         Обновить задачу
       </button>
-      </form>
     </>
   );
 }
