@@ -46,6 +46,7 @@ function Registration(props) {
             name='login'
             placeholder='login'
             onChange={handleInputChange}
+            required
           />
           <input
             className='login-form__input'
@@ -53,6 +54,7 @@ function Registration(props) {
             name='name'
             placeholder='name'
             onChange={handleInputChange}
+            required
           />
           <input
             className='login-form__input'
@@ -60,6 +62,7 @@ function Registration(props) {
             name='password'
             placeholder='password'
             onChange={handleInputChange}
+            required
           />
           <input
             className='login-form__submit'

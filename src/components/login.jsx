@@ -64,6 +64,7 @@ function Login(props) {
             name='login'
             placeholder='login'
             onChange={handleInputChange}
+            required
           />
           <input
             className='login-form__input'
@@ -71,6 +72,7 @@ function Login(props) {
             name='password'
             placeholder='password'
             onChange={handleInputChange}
+            required
           />
           <input className='login-form__submit' type='submit' value='Login' />
         </form>

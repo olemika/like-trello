@@ -24,10 +24,17 @@ export default function CreateCard({ status, users, boardId, onUpdate }) {
     }
   }, [users]);
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.stopPropagation();
+      addNewTag();
+    }
+  };
+
   const tagInput = useRef();
 
-  function addNewTag(e) {
-    e.preventDefault();
+  function addNewTag() {
     const value = tagInput.current.value;
     setTags(value);
     setNewCard({ ...newCard, tag: value });
@@ -35,7 +42,10 @@ export default function CreateCard({ status, users, boardId, onUpdate }) {
     setShowTagInput(true);
   }
 
-  function addNewTask() {
+  function addNewTask(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
     crateTask(newCard).then((res) => {
       onUpdate();
     });
@@ -44,77 +54,91 @@ export default function CreateCard({ status, users, boardId, onUpdate }) {
 
   return showCard ? (
     <div className='box'>
-      <h2 className='create-card-header'>Добавить задачу</h2>
-      <label>
-        Название:
-        <input
-          className='createcard-input'
-          type='text'
-          onChange={(e) => setNewCard({ ...newCard, name: e.target.value })}
-        />
-      </label>
-      <label htmlFor=''>
-        Описание
-        <textarea
-          className='createcard-input'
-          rows='10'
-          onChange={(e) =>
-            setNewCard({ ...newCard, description: e.target.value })
-          }
-        />
-      </label>
-
-      <label>
-        Дедлайн:
-        <input
-          className='createcard-input'
-          type='date'
-          onChange={(e) => setNewCard({ ...newCard, date_to: e.target.value })}
-        />
-      </label>
-
-      {showTagInput ? (
-        <div className='tags tags--create'>
-          <div className='tags__list'>
-            {newCard.tag && (
-              <div className='tag' onClick={() => setShowTagInput(false)}>
-                {newCard.tag}
-              </div>
-            )}
-          </div>
-        </div>
-      ) : (
-        <form onSubmit={(e) => addNewTag(e)}>
-          <label>
-            <input className='createcard-input' placeholder="Введите тэг" ref={tagInput} defaultValue={tags} type='text' autoFocus />
-          </label>
-        </form>
-      )}
-
-      <hr />
-
-      <div className='assign-to'>
+      <form onSubmit={addNewTask}>
+        <h2 className='create-card-header'>Добавить задачу</h2>
         <label>
-          Исполнитель
-          {users && (
-            <select
-              defaultValue={users[0].id}
-              onChange={(e) =>
-                setNewCard({ ...newCard, user_id: e.target.value })
-              }
-            >
-              {users.map((u) => (
-                <option key={u.id} value={`${u.id}`}>
-                  {u.name}
-                </option>
-              ))}
-            </select>
-          )}
+          Название:
+          <input
+            className='createcard-input'
+            type='text'
+            required
+            onChange={(e) => setNewCard({ ...newCard, name: e.target.value })}
+          />
         </label>
-      </div>
-      <button className='add-task-button btn' onClick={addNewTask}>
-        Готово
-      </button>
+        <label>
+          Описание
+          <textarea
+            className='createcard-input'
+            rows='10'
+            onChange={(e) =>
+              setNewCard({ ...newCard, description: e.target.value })
+            }
+            required
+          />
+        </label>
+
+        <label>
+          Дедлайн:
+          <input
+            className='createcard-input'
+            type='date'
+            onChange={(e) =>
+              setNewCard({ ...newCard, date_to: e.target.value })
+            }
+            required
+          />
+        </label>
+
+        {showTagInput ? (
+          <div className='tags tags--create'>
+            <div className='tags__list'>
+              {newCard.tag && (
+                <div className='tag' onClick={() => setShowTagInput(false)}>
+                  {newCard.tag}
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <label>
+            <input
+              className='createcard-input'
+              placeholder='Put tag and press Enter'
+              ref={tagInput}
+              defaultValue={tags}
+              onKeyPress={(e) => handleKeyPress(e)}
+              type='text'
+              autoFocus
+              required
+            />
+          </label>
+        )}
+
+        <hr />
+
+        <div className='assign-to'>
+          <label>
+            Исполнитель
+            {users && (
+              <select
+                defaultValue={users[0].id}
+                onChange={(e) =>
+                  setNewCard({ ...newCard, user_id: e.target.value })
+                }
+              >
+                {users.map((u) => (
+                  <option key={u.id} value={`${u.id}`}>
+                    {u.name}
+                  </option>
+                ))}
+              </select>
+            )}
+          </label>
+        </div>
+        <button className='add-task-button btn' type='submit'>
+          Готово
+        </button>
+      </form>
     </div>
   ) : (
     <button className='add-card-button btn' onClick={() => setShowCard(true)}>
