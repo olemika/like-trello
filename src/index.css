@@ -1,16 +1,129 @@
 body {
-  font-family: system-ui;
+  font-family: Arial;
   background: rgb(221, 133, 252);
   background: linear-gradient(
     29deg,
     rgba(221, 133, 252, 1) 0%,
     rgba(255, 245, 98, 1) 100%
   );
-  color: white;
-  padding: 16px 32px;
+  color: #000;
+  margin: 0;
+  padding: 0;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  font-size: 18px;
+  outline: none;
+}
+
+textarea {
+  font-family: Arial;
+  font-size: 18px;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+select {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+textarea {
+  padding: 8px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  margin: 0;
+  padding: 16px 24px;
+  background: #fff;
+  height: 60px;
+  box-sizing: border-box;
+}
+
+nav div {
+  display: flex;
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul li {
+  margin-right: 16px;
+  text-transform: uppercase;
+}
+
+nav a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+h2 {
+  color: #000;
+  text-transform: uppercase;
+  font-size: 21px;
+}
+
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+button.btn {
+  display: inline-block;
+  padding: 16px;
+  /* border: 1px solid rgba(255, 255, 255, 0); */
+  /* border-radius: 2em; */
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  /* color: #000; */
+  text-align: center;
+  transition: all 0.2s;
+  font-size: 18px;
+  /* background: transparent; */
+  cursor: pointer;
+  border-color: rgb(0, 0, 0);
+  /* width: 100%; */
+}
+
+button.btn:hover {
+  /* border-color: rgba(117, 253, 113, 1);
+  
+   */
+}
+
+@media all and (max-width: 30em) {
+  button.btn {
+    display: block;
+    margin: 0.2em auto;
+  }
 }

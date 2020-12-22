@@ -1,0 +1,8 @@
+.category {
+  width: 25%;
+  padding: 4px;
+}
+.category__title {
+  text-transform: uppercase;
+  padding: 0 8px;
+}

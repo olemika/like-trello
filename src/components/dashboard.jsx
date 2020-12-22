@@ -1,50 +1,69 @@
-import React from "react";
-import Card from "./card";
-import CreateCard from "./createCard.jsx";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Progress from "./progress";
+import List from "./list";
+import { DragDropContext } from "react-beautiful-dnd";
+
+import { getOneBoard } from "../services/boards.js";
+import { updateTaskStatus } from "../services/task.js";
+import { getBoardUsers } from "../services/boards.js";
+
 import "./dashboard.css";
 
-export default function Dashboard({ cards, addTask, removeTask }) {
+export default function Dashboard() {
+  const [myTasks, setMyTasks] = useState();
+  const [users, setUsers] = useState();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    getTasks();
+  }, []);
+
+  const getTasks = () => {
+    getOneBoard(id).then((b) => {
+      setMyTasks(b);
+    });
+    getBoardUsers(id)
+      .then((u) => u.json())
+      .then((u) => setUsers(u));
+  };
+
+  const onDrugEnd = (result) => {
+    const { destination, draggableId } = result;
+    if (!destination) return;
+
+    const newStatus = myTasks.statuses[destination.droppableId - 1];
+
+    updateTaskStatus(newStatus.id, draggableId)
+      .then(() => getOneBoard(id))
+      .then((b) => setMyTasks(b));
+  };
+
   return (
-    <div className='grid'>
-      <div className='category ready'>
-        Task Ready
-        {cards.map((card) =>
-          card.category === "ready" ? (
-            <Card key={card.id} info={card} onCardDelete={removeTask} />
-          ) : null
-        )}
-        <CreateCard onTaskAdd={addTask} category='ready' />
+    <>
+      <div className='dashboard-wrapper'>
+        <DragDropContext onDragEnd={onDrugEnd}>
+          {myTasks &&
+            myTasks.statuses.map((status) => {
+              const tasks = myTasks.tasks.filter(
+                (t) => t.task_status === status.id
+              );
+              return (
+                <List
+                  key={status.id}
+                  tasks={tasks}
+                  list={status}
+                  users={users}
+                  boardId={id}
+                  onUpdate={getTasks}
+                />
+              );
+            })}
+        </DragDropContext>
       </div>
 
-      <div className='category progress'>
-        On Progress
-        {cards.map((card) =>
-          card.category === "progress" ? (
-            <Card key={card.id} info={card} onCardDelete={removeTask} />
-          ) : null
-        )}
-        <CreateCard onTaskAdd={addTask} category='progress' />
-      </div>
-
-      <div className='category review'>
-        Needs Review
-        {cards.map((card) =>
-          card.category === "review" ? (
-            <Card key={card.id} info={card} onCardDelete={removeTask} />
-          ) : null
-        )}
-        <CreateCard onTaskAdd={addTask} category='review' />
-      </div>
-
-      <div className='category done'>
-        Done
-        {cards.map((card) =>
-          card.category === "done" ? (
-            <Card key={card.id} info={card} onCardDelete={removeTask} />
-          ) : null
-        )}
-        <CreateCard onTaskAdd={addTask} category='done' />
-      </div>
-    </div>
+      <Progress boardId={id} users={users} onUpdate={getTasks} />
+    </>
   );
 }

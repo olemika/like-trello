@@ -40,8 +40,29 @@
 .add-card-button {
   background: transparent;
   padding: 16px;
-  color: #fff;
-  border: 1px solid #fff;
+  color: #636363;
+  width: 100%;
+  border: none;
   border-radius: 9px;
   cursor: pointer;
+}
+
+.add-task-button {
+  width: 100%;
+  background: rgba(62, 162, 202, 0.8);
+  border-radius: 1em;
+}
+
+.createcard-input {
+  background: transparent;
+  border-radius: 5px;
+  border: 1px solid #868686;
+}
+
+.assign-to {
+  margin-top: 8px;
+}
+
+.assign-to select {
+  margin: 8px 0;
 }

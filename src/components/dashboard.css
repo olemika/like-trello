@@ -1,17 +1,26 @@
 .category {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: max-content;
-  grid-gap: 13px;
+  display: flex;
+  flex-direction: column;
   color: #000;
   font-size: 18px;
+  margin-right: auto;
+  margin-left: auto;
   font-weight: bold;
+  max-width: 300px;
+  min-width: 260px;
 }
 
-.grid {
-  padding: 20px;
-  display: grid;
+.dashboard-wrapper {
+  max-width: 1400px;
+  display: flex;
+  overflow: auto;
   width: 100%;
-  grid-template: repeat(1, 1fr) / repeat(4, 1fr);
-  grid-gap: 30px;
+  justify-content: center;
+  padding-right: 40px;
+}
+
+@media (min-width: 400px) {
+  .dashboard-wrapper {
+    justify-content: flex-start;
+  }
 }
