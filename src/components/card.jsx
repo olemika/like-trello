@@ -18,7 +18,7 @@ export default function Card({ info, index, onUpdate, users }) {
     task_name,
     task_description,
     task_id,
-    date_to,
+    task_date_to,
     task_user_name,
   } = info;
 
@@ -56,7 +56,7 @@ export default function Card({ info, index, onUpdate, users }) {
                 <p className='card_p'>👨‍💼️{task_user_name}</p>
                 <p className='card_p'>
                   📅🏁:{" "}
-                  {new Date(date_to)
+                  {new Date(task_date_to)
                     .toLocaleString()
                     .slice(0, 10)
                     .replace(/-/g, ".")}
